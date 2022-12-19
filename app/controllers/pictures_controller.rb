@@ -28,7 +28,6 @@ class PicturesController < ApplicationController
         redirect_to pictures_path, notice: "投稿しました！"
     else
       render :new
-      end
     end
   end
 
@@ -43,24 +42,19 @@ class PicturesController < ApplicationController
   def destroy
     @picture.destroy
     redirect_to pictures_path, notice: "削除しました"
-    end
   end
 
   def confirm
     @picture = current_user.pictures.build(picture_params)
-    render :new if @picturre.invaild?
+    render :new if @picture.invalid?
   end
 
   def set_picture
     @picture = Picture.find(params[:id])
   end
 
-  def picture_params
-    params.require(:picture).permit(:image, :image_cache)
-  end
-
   private
-  def feed_params
-    params.require(:feed).permit(:image, :image_cache)
+  def picture_params
+    params.require(:picture).permit(:image, :image_cache, :content)
   end
 end
