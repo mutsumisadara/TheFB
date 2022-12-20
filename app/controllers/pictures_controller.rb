@@ -25,7 +25,7 @@ class PicturesController < ApplicationController
       render :new
     elsif
       @picture.save
-        redirect_to pictures_path, notice: "投稿しました！"
+        redirect_to pictures_path , notice: "投稿しました！"
     else
       render :new
     end
